@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  SimplePDFApp
 //
-//  Created by SITF Pr on 4/19/19.
+//  Created by Ardit Nurcaj. on 4/19/19.
 //
 
 import UIKit
