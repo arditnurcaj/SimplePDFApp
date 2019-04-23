@@ -10,6 +10,14 @@ import Alamofire
 
 class ViewController: UIViewController, DocumentCellDelegate{
   
+  let urls = [
+    "http://gahp.net/wp-content/uploads/2017/09/sample.pdf",
+    "http://www.pdf995.com/samples/pdf.pdf",
+    "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+    "http://unec.edu.az/application/uploads/2014/12/pdf-sample.pdf",
+    "http://ptgmedia.pearsoncmg.com/images/9780134044705/samplepages/9780134044705.pdf"
+  ]
+  
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
@@ -43,13 +51,16 @@ class ViewController: UIViewController, DocumentCellDelegate{
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return urls.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "DocumentCell", for: indexPath) as! DocumentCell
     cell.delegate = self
-    cell.titleLabel.text = "\(indexPath.row)"
+    
+    let urlsSeparated = urls[indexPath.row].components(separatedBy: "/")
+    cell.titleLabel.text = urlsSeparated.last
+    
     cell.selectionStyle = .none
     return cell
   }
