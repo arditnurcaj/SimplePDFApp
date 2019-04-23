@@ -15,6 +15,7 @@ protocol DocumentCellDelegate {
 class DocumentCell: UITableViewCell {
   
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var viewButton: UIButton!
   
   var delegate: DocumentCellDelegate?
   

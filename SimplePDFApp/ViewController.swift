@@ -7,8 +7,9 @@
 
 import UIKit
 import Alamofire
+import MBProgressHUD
 
-class ViewController: UIViewController, DocumentCellDelegate{
+class ViewController: UIViewController, DocumentCellDelegate {
   
   let urls = [
     "http://gahp.net/wp-content/uploads/2017/09/sample.pdf",
@@ -18,6 +19,9 @@ class ViewController: UIViewController, DocumentCellDelegate{
     "http://ptgmedia.pearsoncmg.com/images/9780134044705/samplepages/9780134044705.pdf"
   ]
   
+  var lastPaths = [String]()
+  var localFileURLs = [Int: String]()
+  
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
@@ -25,12 +29,14 @@ class ViewController: UIViewController, DocumentCellDelegate{
     
     self.tableView.dataSource = self
     self.tableView.delegate = self
-
+    
   }
   
   func downloadDocument(cell: DocumentCell) {
     if let index = tableView.indexPath(for: cell){
       print("Pressed download pdf at \(index.row)")
+      self.downloadDocument(index: index.row)
+      cell.viewButton.isEnabled = true
     }
   }
   
@@ -40,10 +46,34 @@ class ViewController: UIViewController, DocumentCellDelegate{
     }
   }
   
-  @IBAction func viewDocumentPressed(_ sender: Any) {
-    if let index = tableView.indexPath(for: (sender as AnyObject).superview??.superview as! UITableViewCell){
-      print("Pressed view pdf at \(index.row)")
+  func downloadDocument(index: Int){
+    
+    let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+    hud.mode = MBProgressHUDMode.annularDeterminate
+    hud.label.text = "Loading..."
+    
+    let url = urls[index]
+    
+    let destination: DownloadRequest.DownloadFileDestination = {_,_ in
+      let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+      let fileURL = documentsURL.appendingPathComponent(self.lastPaths[index])
+      
+      return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
     }
+    
+    Alamofire.download(url, to: destination).downloadProgress(closure: { progress in
+      hud.progress = Float(progress.fractionCompleted)
+    }).response { response in
+      
+      hud.hide(animated: true)
+      
+      if response.error == nil, let filePath = response.destinationURL?.path {
+        print(filePath)
+        self.localFileURLs[index] = filePath
+      }
+      
+    }
+    
   }
   
 }
@@ -59,8 +89,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     cell.delegate = self
     
     let urlsSeparated = urls[indexPath.row].components(separatedBy: "/")
-    cell.titleLabel.text = urlsSeparated.last
-    
+    if let lastPath = urlsSeparated.last {
+      cell.titleLabel.text = lastPath
+      lastPaths.append(lastPath)
+    }
     cell.selectionStyle = .none
     return cell
   }
