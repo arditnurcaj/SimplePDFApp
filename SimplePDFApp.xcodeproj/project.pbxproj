@@ -14,6 +14,7 @@
 		DD56ECBE2269EBF900442DD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD56ECBD2269EBF900442DD8 /* Assets.xcassets */; };
 		DD56ECC12269EBF900442DD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD56ECBF2269EBF900442DD8 /* LaunchScreen.storyboard */; };
 		DD56ECC9226A09A500442DD8 /* DocumentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD56ECC8226A09A500442DD8 /* DocumentCell.swift */; };
+		DD8842DF226F2B4B00BBE443 /* ReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8842DE226F2B4B00BBE443 /* ReaderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		DD56ECC02269EBF900442DD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD56ECC22269EBF900442DD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD56ECC8226A09A500442DD8 /* DocumentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCell.swift; sourceTree = "<group>"; };
+		DD8842DE226F2B4B00BBE443 /* ReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewController.swift; sourceTree = "<group>"; };
 		EB5C3002001CB939A66C3D28 /* Pods-SimplePDFApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimplePDFApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimplePDFApp/Pods-SimplePDFApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				DD56ECBF2269EBF900442DD8 /* LaunchScreen.storyboard */,
 				DD56ECC22269EBF900442DD8 /* Info.plist */,
 				DD56ECC8226A09A500442DD8 /* DocumentCell.swift */,
+				DD8842DE226F2B4B00BBE443 /* ReaderViewController.swift */,
 			);
 			path = SimplePDFApp;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				DD56ECC9226A09A500442DD8 /* DocumentCell.swift in Sources */,
 				DD56ECB92269EBF400442DD8 /* ViewController.swift in Sources */,
 				DD56ECB72269EBF400442DD8 /* AppDelegate.swift in Sources */,
+				DD8842DF226F2B4B00BBE443 /* ReaderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

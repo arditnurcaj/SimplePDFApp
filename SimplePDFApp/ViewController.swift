@@ -43,6 +43,7 @@ class ViewController: UIViewController, DocumentCellDelegate {
   func viewDocument(cell: DocumentCell) {
     if let index = tableView.indexPath(for: cell){
       print("Pressed view pdf at \(index.row)")
+      performSegue(withIdentifier: "goToPDFReader", sender: cell)
     }
   }
   
@@ -74,6 +75,18 @@ class ViewController: UIViewController, DocumentCellDelegate {
       
     }
     
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "goToPDFReader" {
+      let vc = segue.destination as! ReaderViewController
+      
+      if let sender = sender as? DocumentCell {
+        if let index = self.tableView.indexPath(for: sender) {
+          vc.url = localFileURLs[index.row]!
+        }
+      }
+    }
   }
   
 }
