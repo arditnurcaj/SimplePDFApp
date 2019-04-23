@@ -7,4 +7,5 @@ target 'SimplePDFApp' do
 
   # Pods for SimplePDFApp
     pod 'Alamofire'
+    pod 'MBProgressHUD', '~> 1.1.0'
 end
