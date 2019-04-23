@@ -85,7 +85,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sample PDFs" id="wpL-KD-of4"/>
+                    <navigationItem key="navigationItem" title="Sample PDFs" id="wpL-KD-of4">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="5U6-iO-EbN">
+                            <connections>
+                                <action selector="addDocument:" destination="BYZ-38-t0r" id="4wK-nw-Skg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="mvK-iD-0wf" id="cKg-8u-RZp"/>
                         <segue destination="HZo-H5-s85" kind="show" identifier="goToPDFReader" id="pdO-mo-jch"/>

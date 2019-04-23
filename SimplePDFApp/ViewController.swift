@@ -11,7 +11,7 @@ import MBProgressHUD
 
 class ViewController: UIViewController, DocumentCellDelegate {
   
-  let urls = [
+  var urls = [
     "http://gahp.net/wp-content/uploads/2017/09/sample.pdf",
     "http://www.pdf995.com/samples/pdf.pdf",
     "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
@@ -87,6 +87,29 @@ class ViewController: UIViewController, DocumentCellDelegate {
         }
       }
     }
+  }
+  
+  @IBAction func addDocument(_ sender: Any) {
+    
+    let alert = UIAlertController(title: "Add PDF", message: "Enter a valid URL", preferredStyle: .alert)
+    
+    alert.addTextField { (textField) in
+      textField.placeholder = "Enter your url here"
+    }
+    
+    alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { [weak alert] (_) in
+      let textField = alert!.textFields![0]
+      if let text = textField.text {
+        self.addPDF(url: text)
+      }
+    }))
+    
+    self.present(alert, animated: true, completion: nil)
+  }
+  
+  func addPDF(url: String){
+    urls.append(url)
+    tableView.reloadData()
   }
   
 }
