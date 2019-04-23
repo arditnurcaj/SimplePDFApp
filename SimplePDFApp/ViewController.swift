@@ -133,4 +133,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     return cell
   }
   
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      self.urls.remove(at: indexPath.row)
+      self.localFileURLs[indexPath.row] = nil
+      tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+  }
+  
 }
