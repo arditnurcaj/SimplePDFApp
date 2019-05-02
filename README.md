@@ -1,2 +1,2 @@
 # SimplePDFApp
-A simple app to download/view pdf files.
+A simple ios app to download/view pdf files.
